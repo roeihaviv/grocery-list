@@ -12,4 +12,13 @@
 #  updated_at    :datetime         not null
 #
 class Item < ApplicationRecord
+  belongs_to :user
+
+  validates :item, presence: true
+
+  enum status: {
+    cart: "cart",
+    end_soon: "end_soon",
+    in_stock: "in_stock"
+}
 end
