@@ -1,42 +1,15 @@
-<%= form_with(model: item, local: true) do |form| %>
-  <% if item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+<li id="<%= dom_id item, :form %>" class="list-group-item">
+  <%= form_with(model: item, local: false) do |form| %>
+    <div class="mb-2">
+      <%= form.label :item, class: "visually-hidden" %>
+      <%= form.text_field :item, class: "form-control" %>
+    </div>
 
-      <ul>
-        <% item.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+      <div>
+      <div class="d-grid">
+        <%= form.submit class: "btn btn-outline-primary" %>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :item %>
-    <%= form.text_field :item %>
-  </div>
-
-  <div class="field">
-    <%= form.label :related_items %>
-    <%= form.text_field :related_items %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.text_field :category %>
-  </div>
-
-  <div class="field">
-    <%= form.label :picture %>
-    <%= form.text_field :picture %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</li>

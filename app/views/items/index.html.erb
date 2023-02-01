@@ -1,24 +1,37 @@
 <div class="row">
   <div class="col-md-4">
-    <h2 class="h6 text-center">Cart</h2>
+    <div class="card">
+      <div class="card-header">
+        Cart
+      </div>
 
-    <ul class="list-group">
-       <%= render current_user.items.cart.order(created_at: :asc) %>
-    </ul>
+      <ul id="cart_list" class="list-group list-group-flush">
+        <%= render "items/form", item: current_user.items.build %>
+        <%= render current_user.items.cart.order(created_at: :asc) %>
+      </ul>
+    </div>
   </div>
 
- <div class="col-md-4">
-    <h2 class="h6 text-center">End Soon</h2>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        End Soon
+      </div>
 
-     <ul class="list-group">
-     <%= render current_user.items.end_soon.order(updated_at: :desc) %>
-    </ul>
+      <ul id="end_soon_list" class="list-group">
+        <%= render current_user.items.end_soon.order(updated_at: :desc) %>
+      </ul>
+    </div>
   </div>
 
- <div class="col-md-4">
-    <h2 class="h6 text-center">In Stock!</h2>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        In Stock!
+      </div>
+    </div>
 
-    <ul class="list-group">
+    <ul id="in_stock_list" class="list-group">
       <%= render current_user.items.in_stock.order(updated_at: :desc) %>
     </ul>
   </div>

@@ -1,5 +1,21 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[ show edit update destroy ]
+  before_action :set_item, only: %i[ show edit update destroy move]
+
+  def move
+    if @item.cart?
+      @item.end_soon!
+    elsif @item.end_soon?
+      @item.in_stock!
+    else
+      @item.end_soon!
+    end
+
+    respond_to do |format|
+      format.html { redirect_to items_url, notice: "Item updated" }
+
+      format.js
+    end
+  end
 
   # GET /items or /items.json
   def index

@@ -1,0 +1,5 @@
+$("#<%= dom_id @item %>").remove();
+
+var updated_item = $("<%= j(render @item) %>");
+
+$("#<%= @item.status %>_list").prepend(updated_item);
