@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Base Rails</title>
+    <meta charset="utf-8">
+    <title>Grocery Items List</title>
     <%= csrf_meta_tags %>
 
     <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
@@ -11,11 +12,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= render "shared/cdn_assets" %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "shared/navbar" %>
+
+    <div class="container">
+      <%= render "shared/flash_messages" %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
