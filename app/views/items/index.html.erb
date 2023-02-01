@@ -3,11 +3,7 @@
     <h2 class="h6 text-center">Cart</h2>
 
     <ul class="list-group">
-      <% current_user.items.cart.each do |task| %>
-        <li class="list-group-item">
-          <%= item.item %>
-        </li>
-      <% end %>
+       <%= render current_user.items.cart.order(created_at: :asc) %>
     </ul>
   </div>
 
@@ -15,11 +11,7 @@
     <h2 class="h6 text-center">End Soon</h2>
 
      <ul class="list-group">
-      <% current_user.items.end_soon.each do |task| %>
-        <li class="list-group-item">
-          <%= item.item %>
-        </li>
-      <% end %>
+     <%= render current_user.items.end_soon.order(updated_at: :desc) %>
     </ul>
   </div>
 
@@ -27,11 +19,7 @@
     <h2 class="h6 text-center">In Stock!</h2>
 
     <ul class="list-group">
-      <% current_user.items.in_stock.each do |task| %>
-        <li class="list-group-item">
-          <%= item.item %>
-        </li>
-      <% end %>
+      <%= render current_user.items.in_stock.order(updated_at: :desc) %>
     </ul>
   </div>
 </div>
