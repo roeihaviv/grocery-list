@@ -7,7 +7,7 @@
 
       <ul id="cart_list" class="list-group list-group-flush">
         <%= render "items/form", item: current_user.items.build %>
-        <%= render current_user.items.cart.order(created_at: :asc) %>
+        <%= render current_user.items.cart.order(created_at: :desc) %>
       </ul>
     </div>
   </div>
@@ -18,7 +18,7 @@
         End Soon
       </div>
 
-      <ul id="end_soon_list" class="list-group">
+      <ul id="end_soon_list" class="list-group list-group-flush">
         <%= render current_user.items.end_soon.order(updated_at: :desc) %>
       </ul>
     </div>
@@ -29,10 +29,10 @@
       <div class="card-header">
         In Stock!
       </div>
-    </div>
 
-    <ul id="in_stock_list" class="list-group">
-      <%= render current_user.items.in_stock.order(updated_at: :desc) %>
-    </ul>
+      <ul id="in_stock_list" class="list-group list-group-flush">
+        <%= render current_user.items.in_stock.order(updated_at: :desc) %>
+      </ul>
+    </div>
   </div>
 </div>

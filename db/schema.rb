@@ -13,9 +13,9 @@
 ActiveRecord::Schema.define(version: 2023_02_01_174636) do
 
   create_table "items", force: :cascade do |t|
-    t.string "item"
+    t.string "item", null: false
     t.string "related_items"
-    t.string "status"
+    t.string "status", default: "end_soon", null: false
     t.string "category"
     t.string "picture"
     t.datetime "created_at", precision: 6, null: false

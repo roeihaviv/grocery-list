@@ -1,0 +1,9 @@
+var new_item = $("<%= j(render @item) %>");
+
+new_item.hide();
+
+$("#form_item").after(new_item);
+
+new_item.slideDown();
+
+$("#form_item").before(new_item);

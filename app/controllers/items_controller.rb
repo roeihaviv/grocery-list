@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[ show edit update destroy move]
+  before_action :set_item, only: %i[ show edit update destroy move ]
 
   def move
     if @item.cart?
@@ -19,6 +19,8 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
+    items = Item.where(category: "fruits")
+    items.update_all(category: "<i class=\"fa-solid fa-apple-whole\"></i>")
     @items = Item.all
   end
 
@@ -33,19 +35,25 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /items or /items.json
   def create
-    @item = Item.new(item_params)
+    @item = current_user.items.build(item_params)
 
     respond_to do |format|
       if @item.save
         format.html { redirect_to item_url(@item), notice: "Item was successfully created." }
         format.json { render :show, status: :created, location: @item }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -56,9 +64,11 @@ class ItemsController < ApplicationController
       if @item.update(item_params)
         format.html { redirect_to item_url(@item), notice: "Item was successfully updated." }
         format.json { render :show, status: :ok, location: @item }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -70,17 +80,20 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to items_url, notice: "Item was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def item_params
-      params.require(:item).permit(:item, :related_items, :status, :category, :picture)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def item_params
+    params.require(:item).permit(:item, :related_items, :status, :category, :picture)
+    
+  end
 end
