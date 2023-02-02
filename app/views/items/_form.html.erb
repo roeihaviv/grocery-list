@@ -1,8 +1,8 @@
 <li id="<%= dom_id item, :form %>" class="list-group-item">
   <%= form_with(model: item, local: false) do |form| %>
     <div class="mb-2">
-      <%= form.label :body, class: "visually-hidden" %>
-      <%= form.text_field :body, class: "form-control" %>
+      <%= form.label :item, class: "visually-hidden" %>
+      <%= form.text_field :item, class: "form-control" %>
     </div>
 
       <div>

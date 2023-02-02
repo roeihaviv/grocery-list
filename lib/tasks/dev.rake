@@ -3,4 +3,7 @@ task({ :sample_data => :environment }) do
   user = User.find_or_create_by(email: "roeihaviv@gmail.com") do |user|
     user.password = "roeihaviv"
   end
+
+  user.items.destroy_all
+
 end

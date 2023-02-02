@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :items do
-    get "move", on: :member
+    patch "move", on: :member
   end 
 end
